@@ -2,12 +2,13 @@
 % Please edit documentation in R/calcOuterPerformances.R
 \name{calcOuterPerformances}
 \alias{calcOuterPerformances}
+\alias{OuterPerformanceResult}
 \title{Calculates Outer Performances}
 \usage{
-calcOuterPerformances(tuning.resampled, task, measures)
+calcOuterPerformances(tuning.resampled, ...)
 }
 \arguments{
-\item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}}]
+\item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
 Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.}
 
 \item{task}{[\code{\link[mlr]{Task}}]}
@@ -15,7 +16,7 @@ Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}
 \item{measures}{[\code{\link[mlr]{Measure}}]}
 }
 \value{
-\code{data.table}
+[\code{OuterPerformanceResult}]
 }
 \description{
 Calculates the performance on the outer test set for a nested resampling with a tune wrapper

@@ -10,10 +10,15 @@
 #' @return [\code{ResampleOverfitResult}]
 #' @aliases ResampleOverfitResult
 #' @export
-resampleOverfit = function(learner.tuned, task, resampling, measures, ...) {
+resampleOverfit = function(learner.tuned, task, resampling, measures = NULL, ...) {
   assertClass(learner.tuned, "TuneWrapper")
   assertClass(task, "Task")
   checkTRUE(checkClass(resampling, "ResampleDesc") || checkClass(resampling, "ResampleInstance"))
+
+  if (is.null(measures)) {
+    measures = getDefaultMeasure(task)
+  }
+  measures = ensureVector(x = measures, cl = "Measure", ensure.list = TRUE)
 
   learner = learner.tuned$next.learner
 

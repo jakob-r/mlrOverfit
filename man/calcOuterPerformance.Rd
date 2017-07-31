@@ -4,17 +4,13 @@
 \alias{calcOuterPerformance}
 \title{Calculates Outer Performance for a given Iteration}
 \usage{
-calcOuterPerformance(tuning.resampled, out.res.i, task, measures)
+calcOuterPerformance(tuning.resampled, out.res.i, ...)
 }
 \arguments{
-\item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}}]
+\item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
 Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.}
 
 \item{out.res.i}{[\code{integer(1)}]}
-
-\item{task}{[\code{\link[mlr]{Task}}]}
-
-\item{measures}{[\code{\link[mlr]{Measure}}]}
 }
 \value{
 \code{data.table}

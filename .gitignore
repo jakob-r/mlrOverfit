@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+vignettes/*_files/
+vignettes/*.html
+vignettes/*.R
+*_cache
