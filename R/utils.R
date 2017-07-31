@@ -18,6 +18,7 @@ cum.over.dob = function(x, dob, minimize = TRUE) {
   values.dt = data.table(x = x, dob = dob)
   tmp.min = values.dt[, list(cum = min(x)), by = "dob"]
   values.dt = merge(values.dt, tmp.min, all.x = TRUE, all.y = FALSE, by = "dob")
+  values.dt = values.dt[order(dob), ]
   cumfun(values.dt$cum)
 }
 

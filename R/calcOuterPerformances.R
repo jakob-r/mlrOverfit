@@ -1,24 +1,33 @@
 #' @title Calculates Outer Performances
 #' @description Calculates the performance on the outer test set for a nested resampling with a tune wrapper
-#' @param tuning.resampled [\code{\link[mlr]{ResampleResult}}]
+#' @param tuning.resampled [\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
 #'   Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.
 #' @param task [\code{\link[mlr]{Task}}]
 #' @param measures [\code{\link[mlr]{Measure}}]
-#' @return \code{data.table}
+#' @return [\code{OuterPerformanceResult}]
+#' @aliases OuterPerformanceResult
 #' @export
-calcOuterPerformances = function(tuning.resampled, task, measures) {
-  assertClass(tuning.resampled, "ResampleResult")
+calcOuterPerformances = function(tuning.resampled, ...) {
+  UseMethod("calcOuterPerformances")
+}
+
+#' @export
+calcOuterPerformances.ResampleOverfitResult = function(tuning.resampled, ...) {
+  calcOuterPerformances(tuning.resampled$tuning.resampled, tuning.resampled$task, tuning.resampled$measures)
+}
+
+#' @export
+calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures) {
   assertList(tuning.resampled$extract, "TuneResult")
   assertClass(task, "Task")
   measures = BBmisc::ensureVector(measures, cl = "Measure")
   assertList(measures, types = "Measure")
 
-  par.set = tuning.resampled$extract[[1]]$opt.path$par.set
-  learner = tuning.resampled$extract[[1]]$learner
-
   outer.errors = parallelMap(calcOuterPerformance, out.res.i = seq_along(tuning.resampled$extract), more.args = list(tuning.resampled = tuning.resampled, task = task, measures = measures))
-  outer.errors = rbindlist(outer.errors)
-  outer.errors
+  data = extractSubList(outer.errors, "data", simplify = FALSE)
+  data = rbindlist(data)
+  res = insert(outer.errors[[1]], list(data = data))
+  addClasses(res, "OuterPerformanceResult")
 }
 
 #' @title Calculates Outer Performance for a given Iteration
@@ -27,8 +36,17 @@ calcOuterPerformances = function(tuning.resampled, task, measures) {
 #' @param out.res.i [\code{integer(1)}]
 #' @return \code{data.table}
 #' @export
-calcOuterPerformance = function(tuning.resampled, out.res.i, task, measures) {
-  assertClass(tuning.resampled, "ResampleResult")
+calcOuterPerformance = function(tuning.resampled, out.res.i, ...) {
+  UseMethod("calcOuterPerformance")
+}
+
+#' @export
+calcOuterPerformance.ResampleOverfitResult = function(tuning.resampled, out.res.i, ...) {
+  calcOuterPerformance(tuning.resampled$tuning.resampled, out.res.i = out.res.i, tuning.resampled$task, tuning.resampled$measures)
+}
+
+#' @export
+calcOuterPerformance.ResampleResult = function(tuning.resampled, out.res.i, task, measures) {
   assertList(tuning.resampled$extract, "TuneResult")
   assertIntegerish(out.res.i, lower = 1, upper = length(tuning.resampled$extract))
   assertClass(task, "Task")
@@ -54,8 +72,13 @@ calcOuterPerformance = function(tuning.resampled, out.res.i, task, measures) {
   }
   outer.error = parallelMap(fun = calcPerf, learner = learners.step, more.args = list(task = task, train.inds = train.inds, test.inds, measures = measures), level = "mlrOverfit.opteval")
   errors = rbindlist(lapply(outer.error, as.list))
-  errors = setColNames(errors, paste0(colnames(errors),".outer.test"))
+
+  y.outer.name = paste0(colnames(errors),".outer.test")
+  y.inner.name = names(tuning.resampled$extract[[1]]$y)
+
+  errors = setColNames(errors, y.outer.name)
   errors = cbind(errors, as.data.frame(op))
   errors[["iter"]] = out.res.i
-  errors
+  res = list(data = errors, y.inner.name = y.inner.name, y.outer.name = y.outer.name, measures = measures)
+  addClasses(res, "OuterPerformanceResult")
 }
