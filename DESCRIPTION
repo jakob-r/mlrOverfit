@@ -3,7 +3,7 @@ Type: Package
 Title: Detect and Visualize Overfitting Effects.
 Version: 0.0.1
 Authors@R: c(
-    person("Richter", "Jakob", NULL, "jakob1richter@gmail.com", role = c("cre", "aut"))
+    person("Jakob", "Richter", NULL, "jakob1richter@gmail.com", role = c("cre", "aut"))
     )
 Description: Helper functions to visualize and detect overfitting effects while tuning with mlr.
 License: BSD_3_clause + file LICENSE

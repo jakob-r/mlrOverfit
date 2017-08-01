@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 vignettes/*_files/
+docs/_site
 vignettes/*.html
 vignettes/*.R
 *_cache
