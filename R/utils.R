@@ -39,3 +39,12 @@ simulate.outer.test = function(inner.perf, outer.perf, minimize = TRUE) {
   sel.index = sapply(cumfun(inner.perf), function(x) which.first(x == inner.perf))
   outer.perf[sel.index]
 }
+
+allEntriesToNa = function(df, goal.nrow = nrow(df)) {
+  # simple stupid hack to keep the col.types while converting eveything to NAs
+  if (nrow(df) == 1) {
+    df = rbind(df,df)
+  }
+  df[1, ] = NA
+  df[rep(1, times = goal.nrow), ]
+}
