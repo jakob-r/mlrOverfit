@@ -4,7 +4,7 @@
 \alias{calcOuterPerformance}
 \title{Calculates Outer Performance for a given Iteration}
 \usage{
-calcOuterPerformance(tuning.resampled, out.res.i, ...)
+calcOuterPerformance(tuning.resampled, out.res.i)
 }
 \arguments{
 \item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]

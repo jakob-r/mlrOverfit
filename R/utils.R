@@ -1,3 +1,9 @@
+# cummax / cummin handling nas
+cummax.na = function(x) cummax(ifelse(is.na(x), -Inf, x))
+cummin.na = function(x) cummin(ifelse(is.na(x), Inf, x))
+max.na = function(x) max(x, na.rm = TRUE)
+min.na = function(x) min(x, na.rm = TRUE)
+
 # @arg x [numeric]
 #  vector of performance values
 # @arg dob [numeric]
@@ -9,11 +15,11 @@
 
 cum.over.dob = function(x, dob, minimize = TRUE) {
   if (minimize) {
-    cumfun = get("cummin", mode = "function")
-    mfun = get("min", mode = "function")
+    cumfun = cummin.na
+    mfun = min.na
   } else {
-    cumfun = get("cummax", mode = "function")
-    mfun = get("max", mode = "function")
+    cumfun = cummax.na
+    mfun = max.na
   }
   values.dt = data.table(x = x, dob = dob)
   tmp.min = values.dt[, list(cum = min(x)), by = "dob"]
@@ -32,9 +38,9 @@ cum.over.dob = function(x, dob, minimize = TRUE) {
 #  the numeric vector that indicates the outer test performance that would be reached at a certain point
 simulate.outer.test = function(inner.perf, outer.perf, minimize = TRUE) {
   if (minimize) {
-    cumfun = get("cummin", mode = "function")
+    cumfun = cummin.na
   } else {
-    cumfun = get("cummax", mode = "function")
+    cumfun = cummax.na()
   }
   sel.index = sapply(cumfun(inner.perf), function(x) which.first(x == inner.perf))
   outer.perf[sel.index]

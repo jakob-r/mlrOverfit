@@ -8,6 +8,9 @@
 }
 \arguments{
 \item{obj}{[\code{\link{OuterPerformanceResult}}]}
+
+\item{...}{[\code{...}]
+Arguments passed do \code{\link{as.data.frame}}}
 }
 \value{
 [\code{data.frame}]

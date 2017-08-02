@@ -7,6 +7,8 @@
 #' @param resampling [\code{\link[mlr]{ResampleDesc}} | \code{\link[mlr]{ResampleInstance}} ]
 #' @param measures [\code{\link[mlr]{Measure}}]
 #'   Only the first measure will be used for analysis
+#' @param ... [\code{...}]
+#'   Arguments passed do \code{\link[mlr]{resample}}
 #' @return [\code{ResampleOverfitResult}]
 #' @aliases ResampleOverfitResult
 #' @export

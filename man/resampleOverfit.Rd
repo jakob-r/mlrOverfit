@@ -17,6 +17,9 @@ Learner wrapped with [\code{\link[mlr]{makeTuneWrapper}}]}
 
 \item{measures}{[\code{\link[mlr]{Measure}}]
 Only the first measure will be used for analysis}
+
+\item{...}{[\code{...}]
+Arguments passed do \code{\link[mlr]{resample}}}
 }
 \value{
 [\code{ResampleOverfitResult}]

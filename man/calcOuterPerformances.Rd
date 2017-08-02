@@ -5,7 +5,7 @@
 \alias{OuterPerformanceResult}
 \title{Calculates Outer Performances}
 \usage{
-calcOuterPerformances(tuning.resampled, ...)
+calcOuterPerformances(tuning.resampled)
 }
 \arguments{
 \item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
@@ -14,6 +14,11 @@ Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}
 \item{task}{[\code{\link[mlr]{Task}}]}
 
 \item{measures}{[\code{\link[mlr]{Measure}}]}
+
+\item{only.on.improvement}{[\code{logical(1)}]
+Calculating the performances can be epensive.
+Do you just want to calculate them, when a new good performance is detected in the inner performance?
+Default is \code{FALSE}.}
 }
 \value{
 [\code{OuterPerformanceResult}]

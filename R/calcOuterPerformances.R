@@ -11,13 +11,13 @@
 #' @return [\code{OuterPerformanceResult}]
 #' @aliases OuterPerformanceResult
 #' @export
-calcOuterPerformances = function(tuning.resampled, ...) {
+calcOuterPerformances = function(tuning.resampled) {
   UseMethod("calcOuterPerformances")
 }
 
 #' @export
-calcOuterPerformances.ResampleOverfitResult = function(tuning.resampled, ...) {
-  calcOuterPerformances(tuning.resampled$tuning.resampled, tuning.resampled$task, tuning.resampled$measures, ...)
+calcOuterPerformances.ResampleOverfitResult = function(tuning.resampled, only.on.improvement = FALSE) {
+  calcOuterPerformances(tuning.resampled$tuning.resampled, tuning.resampled$task, tuning.resampled$measures, only.on.improvement = only.on.improvement)
 }
 
 #' @export
@@ -40,13 +40,13 @@ calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures
 #' @param out.res.i [\code{integer(1)}]
 #' @return \code{data.table}
 #' @export
-calcOuterPerformance = function(tuning.resampled, out.res.i, ...) {
+calcOuterPerformance = function(tuning.resampled, out.res.i) {
   UseMethod("calcOuterPerformance")
 }
 
 #' @export
-calcOuterPerformance.ResampleOverfitResult = function(tuning.resampled, out.res.i, ...) {
-  calcOuterPerformance(tuning.resampled$tuning.resampled, out.res.i = out.res.i, tuning.resampled$task, tuning.resampled$measures, ...)
+calcOuterPerformance.ResampleOverfitResult = function(tuning.resampled, out.res.i, only.on.improvement = FALSE) {
+  calcOuterPerformance(tuning.resampled$tuning.resampled, out.res.i = out.res.i, tuning.resampled$task, tuning.resampled$measures, only.on.improvement = only.on.improvement)
 }
 
 #' @export

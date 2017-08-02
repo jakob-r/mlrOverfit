@@ -4,6 +4,7 @@
 #' @import ggplot2
 #' @import data.table
 #' @import parallelMap
+#' @importFrom plyr revalue
 
 .onAttach = function(libname, pkgname) {
   configureMlr()

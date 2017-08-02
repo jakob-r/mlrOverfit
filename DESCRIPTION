@@ -1,6 +1,6 @@
 Package: mlrOverfit
 Type: Package
-Title: Detect and Visualize Overfitting Effects.
+Title: Detect and Visualize Overfitting Effects
 Version: 0.0.1
 Authors@R: c(
     person("Jakob", "Richter", NULL, "jakob1richter@gmail.com", role = c("cre", "aut"))
@@ -11,10 +11,15 @@ Encoding: UTF-8
 LazyData: true
 Depends:
     mlr,
-    data.table
+    data.table,
+    ggplot2
 Imports:
     checkmate,
     BBmisc,
-    parallelMap
-VignetteBuilder: knitr
+    parallelMap,
+    plyr
+Suggests:
+    knitr,
+    kernlab
 RoxygenNote: 6.0.1
+Suggests: testthat
