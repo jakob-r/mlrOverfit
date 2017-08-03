@@ -52,7 +52,16 @@
     
     
 <div class="contents">
+<div id="mlroverfit" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#mlroverfit" class="anchor"></a>mlrOverfit</h1></div>
 
+<p>Easy analysis of over-fitting effects based on <a href="https://github.com/mlr-org/mlr/#-machine-learning-in-r">mlr</a>.</p>
+<div id="motivation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#motivation" class="anchor"></a>Motivation</h2>
+<p>In a tiny study I noticed that the tuning of hyper-parameters of machine learning methods often did not led to much better results then the default settings. This is often the case for fairly small datasets where the training data does not totally represent the true data. To study those effects I wrote this tiny package. Hopefully it can help you as well. Feedback is appreciated!</p>
+</div>
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
@@ -68,6 +77,16 @@ par.set =<span class="st"> </span><span class="kw">makeParamSet</span>(
 oa =<span class="st"> </span><span class="kw"><a href="reference/generateOverfitAnalysis.html">generateOverfitAnalysis</a></span>(<span class="dt">task =</span> sonar.task, <span class="dt">learner =</span> <span class="st">"classif.ranger"</span>, <span class="dt">par.set =</span> par.set)
 <span class="kw">plot</span>(oa)</code></pre></div>
 <p><img src="index_files/figure-html/demo.short-1.png" width="672"></p>
+<ul>
+<li>
+<strong>untuned</strong> is the performance the learner gives with the outer resampling without setting any hyper-parameters. This can also mean that heuristics are triggered inside of the learner that set the hyper-parameters.</li>
+<li>
+<strong>hypothetical test</strong> The best performance we have observed on the outer test set. This is something we typically don’t and shouldn’t know while tuning.</li>
+<li>
+<strong>test</strong> The performance on the outer test set, that we would have at this point using the hyper-parameters that led to the best performance on the inner resampling. If this curve goes up it indicates <strong>overfitting</strong>.</li>
+<li>
+<strong>training</strong> The best performance observed on the inner resampling so far.</li>
+</ul>
 </div>
 <div id="long" class="section level3">
 <h3 class="hasAnchor">
@@ -82,12 +101,14 @@ par.set =<span class="st"> </span><span class="kw">makeParamSet</span>(
 )
 tune.control =<span class="st"> </span><span class="kw">makeTuneControlRandom</span>(<span class="dt">maxit =</span> <span class="dv">20</span>)
 learner.tuned =<span class="st"> </span><span class="kw">makeTuneWrapper</span>(<span class="dt">learner =</span> learner, <span class="dt">resampling =</span> hout, <span class="dt">par.set =</span> par.set, <span class="dt">control =</span> tune.control)
-ro =<span class="st"> </span><span class="kw"><a href="reference/resampleOverfit.html">resampleOverfit</a></span>(<span class="dt">learner =</span> learner.tuned, <span class="dt">task =</span> task, <span class="dt">resampling =</span> cv10)
+ro =<span class="st"> </span><span class="kw"><a href="reference/resampleOverfit.html">resampleOverfit</a></span>(<span class="dt">learner =</span> learner.tuned, <span class="dt">task =</span> task, <span class="dt">resampling =</span> cv5)
 
 outer.errors =<span class="st"> </span><span class="kw"><a href="reference/calcOuterPerformances.html">calcOuterPerformances</a></span>(ro)
 outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simulateOuterPerformance.html">simulateOuterPerformance</a></span>(outer.errors)
-<span class="kw">plot</span>(outer.errors, ro)</code></pre></div>
-<p><img src="index_files/figure-html/demo.long-1.png" width="672"></p>
+gg =<span class="st"> </span><span class="kw">plot</span>(outer.errors, ro)
+gg +<span class="st"> </span><span class="kw">facet_grid</span>(iter~.)</code></pre></div>
+<p><img src="index_files/figure-html/demo.long-1.png" width="672"> This time we plotted the performance without aggregation so you can see what is going on.</p>
+</div>
 </div>
 </div>
 </div>
@@ -102,7 +123,8 @@ outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simul
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/mlr-org/mlr/#-machine-learning-in-r">mlr</a></li>
+<li><a href="https://travis-ci.org/jakob-r/mlrOverfit"><img src="https://travis-ci.org/jakob-r/mlrOverfit.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://coveralls.io/github/jakob-r/mlrOverfit?branch=master"><img src="https://coveralls.io/repos/github/jakob-r/mlrOverfit/badge.svg?branch=master" alt="Coverage Status"></a></li>
 </ul>
 </div>
 

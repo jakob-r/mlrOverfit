@@ -39,7 +39,7 @@ plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overf
   }
   g = g + scale_color_discrete(name = "Performance")
   g = g + ylab(outer.performance$measures[[1]]$name) + xlab("Date of Birth")
-  g + facet_grid(iter~.)
+  g
 }
 
 #' @title Plots the simulated results
