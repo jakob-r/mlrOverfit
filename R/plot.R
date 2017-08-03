@@ -7,7 +7,7 @@
 #' @export
 plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overfit = NULL) {
   measure.vars = unlist(outer.performance[c("y.inner.name", "y.outer.name", "cum.y.inner.name", "cum.y.outer.name", "sim.y.outer.name")])
-  sumary.vars = unlist(outer.performance[c("cum.y.inner.name", "cum.y.outer.name", "sim.y.outer.name")])
+  summary.vars = unlist(outer.performance[c("cum.y.inner.name", "cum.y.outer.name", "sim.y.outer.name")])
 
   # what does each value mean. What is shown in the legend
   translate = c(y.inner.name = "training",
@@ -19,7 +19,7 @@ plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overf
 
   data = outer.performance$data
   mdata = melt(data, measure.vars = measure.vars)
-  mdata[, do.summary := variable %in% sumary.vars, ]
+  mdata[, ':='(do.summary = get("variable") %in% summary.vars), ]
 
   # data for boxplots
   data.boxplots = rbind(
@@ -31,11 +31,11 @@ plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overf
   data.boxplots[, variable := plyr::revalue(variable, replace = translate, warn_missing = FALSE)]
 
 
-  g = ggplot(mapping = aes(x = dob, y = value, color = variable))
-  g = g + stat_summary(data = mdata[do.summary == TRUE, ], fun.y=median, geom="line")
-  g = g + geom_point(data = mdata[do.summary == FALSE, ], alpha = 0.2)
+  g = ggplot(mapping = aes_string(x = "dob", y = "value", color = "variable"))
+  g = g + stat_summary(data = mdata[get("do.summary") == TRUE, ], fun.y=median, geom="line")
+  g = g + geom_point(data = mdata[get("do.summary") == FALSE, ], alpha = 0.2)
   if (!is.null(resample.overfit)) {
-    g = g + geom_boxplot(data = data.boxplots, mapping = aes(x = dob, y = value), alpha = 0.5, width = 1)
+    g = g + geom_boxplot(data = data.boxplots, mapping = aes_string(x = "dob", y = "value"), alpha = 0.5, width = 1)
   }
   g = g + scale_color_discrete(name = "Performance")
   g = g + ylab(outer.performance$measures[[1]]$name) + xlab("Date of Birth")

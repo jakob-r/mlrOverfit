@@ -12,14 +12,15 @@ LazyData: true
 Depends:
     mlr,
     data.table,
-    ggplot2
+    ggplot2,
+    ParamHelpers
 Imports:
     checkmate,
     BBmisc,
     parallelMap,
-    plyr
-Suggests:
-    knitr,
+    plyr,
     kernlab
+Suggests:
+    knitr
 RoxygenNote: 6.0.1
 Suggests: testthat
