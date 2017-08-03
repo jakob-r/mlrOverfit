@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plots the simulated results — plot.SimulateOuterTestErrorResult • mlrOverfit</title>
+<title>Generates Data for Overfitting Analysis — generateOverfitAnalysis • mlrOverfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -72,28 +72,59 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plots the simulated results</h1>
+    <h1>Generates Data for Overfitting Analysis</h1>
     </div>
 
     
-    <p>Plots the result of <code><a href='simulateOuterTestError.html'>simulateOuterTestError</a></code></p>
+    <p>Generates all necessary data to perform the overfitting analysis</p>
     
 
-    <pre class="usage"><span class='co'># S3 method for SimulateOuterTestErrorResult</span>
-<span class='fu'>plot</span>(<span class='no'>outer.performance</span>,
-  <span class='kw'>resample.overfit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>generateOverfitAnalysis</span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='kw'>tune.control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>par.set</span>,
+  <span class='kw'>learner.tuned</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only.on.improvement</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>outer.resampling</span> <span class='kw'>=</span> <span class='no'>cv10</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>outer.performance</th>
-      <td><p>[<code><a href='simulateOuterTestError.html'>SimulateOuterTestErrorResult</a></code>]</p></td>
+      <th>task</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/mlr/topics/Task'>Task</a></code>]</p></td>
     </tr>
     <tr>
-      <th>resample.overfit</th>
-      <td><p>[<code><a href='resampleOverfit.html'>ResampleOverfitResult</a></code>]
-If supplied boxplots for the untuned and the tuned performances will be shown.</p></td>
+      <th>learner</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/mlr/topics/makeLearner'>Learner</a></code>]
+Learner to be tuned and analyzed.</p></td>
+    </tr>
+    <tr>
+      <th>tune.control</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/mlr/topics/TuneControl'>TuneControl</a></code>]
+If none is supplied a random search with 10 iterations will be performed.</p></td>
+    </tr>
+    <tr>
+      <th>par.set</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/ParamHelpers/topics/makeParamSet'>ParamSet</a></code>]</p></td>
+    </tr>
+    <tr>
+      <th>learner.tuned</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/mlr/topics/makeLearner'>Learner</a></code>]
+Learner wrapped with [<code><a href='http://www.rdocumentation.org/packages/mlr/topics/makeTuneWrapper'>makeTuneWrapper</a></code>]</p></td>
+    </tr>
+    <tr>
+      <th>only.on.improvement</th>
+      <td><p>[<code>logical(1)</code>]
+Calculating the performances can be epensive.
+Do you just want to calculate them, when a new good performance is detected in the inner performance?
+Default is <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>outer.resampling</th>
+      <td><p>[<code><a href='http://www.rdocumentation.org/packages/mlr/topics/makeResampleDesc'>ResampleDesc</a></code> | <code><a href='http://www.rdocumentation.org/packages/mlr/topics/makeResampleInstance'>ResampleInstance</a></code>]
+Default is 10CV.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>[<code>...</code>]
+Arguments passed to <code>resampleOverfit</code></p></td>
     </tr>
     </table>
     
@@ -110,7 +141,7 @@ If supplied boxplots for the untuned and the tuned performances will be shown.</
 
       <footer>
       <div class="copyright">
-  <p>Developed by Richter Jakob.</p>
+  <p>Developed by Jakob Richter.</p>
 </div>
 
 <div class="pkgdown">

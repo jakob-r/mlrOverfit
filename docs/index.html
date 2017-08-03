@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detect and Visualize Overfitting Effects. • mlrOverfit</title>
+<title>Detect and Visualize Overfitting Effects • mlrOverfit</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -56,21 +56,39 @@
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
+<div id="short" class="section level3">
+<h3 class="hasAnchor">
+<a href="#short" class="anchor"></a>Short</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mlrOverfit)
+
+par.set =<span class="st"> </span><span class="kw">makeParamSet</span>(
+  <span class="kw">makeIntegerParam</span>(<span class="dt">id =</span> <span class="st">"mtry"</span>,  <span class="dt">upper =</span> <span class="dv">4</span>, <span class="dt">lower =</span> <span class="dv">1</span>),
+  <span class="kw">makeIntegerParam</span>(<span class="dt">id =</span> <span class="st">"min.node.size"</span>,  <span class="dt">upper =</span> <span class="dv">10</span>, <span class="dt">lower =</span> <span class="dv">1</span>)
+)
+oa =<span class="st"> </span><span class="kw"><a href="reference/generateOverfitAnalysis.html">generateOverfitAnalysis</a></span>(<span class="dt">task =</span> sonar.task, <span class="dt">learner =</span> <span class="st">"classif.ranger"</span>, <span class="dt">par.set =</span> par.set)
+<span class="kw">plot</span>(oa)</code></pre></div>
+<p><img src="index_files/figure-html/demo.short-1.png" width="672"></p>
+</div>
+<div id="long" class="section level3">
+<h3 class="hasAnchor">
+<a href="#long" class="anchor"></a>Long</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mlrOverfit)
+
 task =<span class="st"> </span>pid.task
 learner =<span class="st"> </span><span class="kw">makeLearner</span>(<span class="st">"classif.ksvm"</span>)
 par.set =<span class="st"> </span><span class="kw">makeParamSet</span>(
-      <span class="kw">makeNumericParam</span>(<span class="dt">id =</span> <span class="st">"C"</span>,  <span class="dt">upper =</span> <span class="dv">10</span>, <span class="dt">lower =</span> -<span class="dv">5</span>, <span class="dt">trafo =</span> function(x) <span class="dv">2</span>^x),
-      <span class="kw">makeNumericParam</span>(<span class="dt">id =</span> <span class="st">"sigma"</span>,  <span class="dt">upper =</span> <span class="dv">15</span>, <span class="dt">lower =</span> -<span class="dv">15</span>, <span class="dt">trafo =</span> function(x) <span class="dv">2</span>^x)
+  <span class="kw">makeNumericParam</span>(<span class="dt">id =</span> <span class="st">"C"</span>,  <span class="dt">upper =</span> <span class="dv">10</span>, <span class="dt">lower =</span> -<span class="dv">5</span>, <span class="dt">trafo =</span> function(x) <span class="dv">2</span>^x),
+  <span class="kw">makeNumericParam</span>(<span class="dt">id =</span> <span class="st">"sigma"</span>,  <span class="dt">upper =</span> <span class="dv">15</span>, <span class="dt">lower =</span> -<span class="dv">15</span>, <span class="dt">trafo =</span> function(x) <span class="dv">2</span>^x)
 )
 tune.control =<span class="st"> </span><span class="kw">makeTuneControlRandom</span>(<span class="dt">maxit =</span> <span class="dv">20</span>)
 learner.tuned =<span class="st"> </span><span class="kw">makeTuneWrapper</span>(<span class="dt">learner =</span> learner, <span class="dt">resampling =</span> hout, <span class="dt">par.set =</span> par.set, <span class="dt">control =</span> tune.control)
 ro =<span class="st"> </span><span class="kw"><a href="reference/resampleOverfit.html">resampleOverfit</a></span>(<span class="dt">learner =</span> learner.tuned, <span class="dt">task =</span> task, <span class="dt">resampling =</span> cv10)
 
 outer.errors =<span class="st"> </span><span class="kw"><a href="reference/calcOuterPerformances.html">calcOuterPerformances</a></span>(ro)
-outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simulateOuterTestError.html">simulateOuterTestError</a></span>(outer.errors)
+outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simulateOuterPerformance.html">simulateOuterPerformance</a></span>(outer.errors)
 <span class="kw">plot</span>(outer.errors, ro)</code></pre></div>
-<p><img src="index_files/figure-html/demo-1.png" width="672"></p>
+<p><img src="index_files/figure-html/demo.long-1.png" width="672"></p>
+</div>
 </div>
 </div>
   </div>
@@ -80,7 +98,7 @@ outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simul
 <p><a href="https://opensource.org/licenses/BSD-3-Clause">BSD_3_clause</a> + file <a href="LICENSE">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Richter Jakob <br><small class="roles"> Maintainer, author </small> </li>
+<li>Jakob Richter <br><small class="roles"> Maintainer, author </small> </li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
@@ -92,7 +110,7 @@ outer.errors =<span class="st"> </span><span class="kw"><a href="reference/simul
 
 
       <footer><div class="copyright">
-  <p>Developed by Richter Jakob.</p>
+  <p>Developed by Jakob Richter.</p>
 </div>
 
 <div class="pkgdown">

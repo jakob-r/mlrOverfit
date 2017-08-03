@@ -22,7 +22,7 @@ outer.errors = calcOuterPerformances(ro, only.on.improvement = TRUE)
 head(outer.errors)
 
 
-outer.errors = simulateOuterTestError(outer.errors)
+outer.errors = simulateOuterPerformance(outer.errors)
 
 g = plot(outer.errors, ro)
 g

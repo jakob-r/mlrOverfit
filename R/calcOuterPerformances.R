@@ -4,14 +4,13 @@
 #'   Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.
 #' @param task [\code{\link[mlr]{Task}}]
 #' @param measures [\code{\link[mlr]{Measure}}]
-#' @param only.on.improvement [\code{logical(1)}]
-#'   Calculating the performances can be epensive.
-#'   Do you just want to calculate them, when a new good performance is detected in the inner performance?
-#'   Default is \code{FALSE}.
+#' @param ...
+#'   Arguments passed to specific methods
+#' @template param_only_on_improvement
 #' @return [\code{OuterPerformanceResult}]
 #' @aliases OuterPerformanceResult
 #' @export
-calcOuterPerformances = function(tuning.resampled) {
+calcOuterPerformances = function(tuning.resampled, ...) {
   UseMethod("calcOuterPerformances")
 }
 
@@ -40,7 +39,7 @@ calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures
 #' @param out.res.i [\code{integer(1)}]
 #' @return \code{data.table}
 #' @export
-calcOuterPerformance = function(tuning.resampled, out.res.i) {
+calcOuterPerformance = function(tuning.resampled, out.res.i, ...) {
   UseMethod("calcOuterPerformance")
 }
 

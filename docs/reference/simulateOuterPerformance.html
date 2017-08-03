@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • mlrOverfit</title>
+<title>Simulates the outer test error — simulateOuterPerformance • mlrOverfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,88 +70,40 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.1</small>
-      </h1>
+    <h1>Simulates the outer test error</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Based on the best observed point in the inner resampling the performance on the outer test set will be chosen.</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>simulateOuterPerformance</span>(<span class='no'>outer.performance</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>outer.performance</th>
+      <td><p>[<code><a href='calcOuterPerformances.html'>OuterPerformanceResult</a></code>]</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="as.data.frame.OuterPerformanceResult.html">as.data.frame</a></code> </p>
-          </td>
-          <td><p>Convert OuterPerformanceResult to data.frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="calcOuterPerformance.html">calcOuterPerformance</a></code> </p>
-          </td>
-          <td><p>Calculates Outer Performance for a given Iteration</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="calcOuterPerformances.html">calcOuterPerformances</a></code> </p>
-          </td>
-          <td><p>Calculates Outer Performances</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="generateOverfitAnalysis.html">generateOverfitAnalysis</a></code> </p>
-          </td>
-          <td><p>Generates Data for Overfitting Analysis</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot.OverfitAnalysisResult.html">plot</a></code> </p>
-          </td>
-          <td><p>Plots the simulated results</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot.SimulateOuterPerformanceResult.html">plot</a></code> </p>
-          </td>
-          <td><p>Plots the simulated results</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="resampleOverfit.html">resampleOverfit</a></code> </p>
-          </td>
-          <td><p>Resampling Generating the Necessary Data for Analysis</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simulateOuterPerformance.html">simulateOuterPerformance</a></code> </p>
-          </td>
-          <td><p>Simulates the outer test error</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>[<code>SimulateOuterPerformanceResult</code>]</p>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 

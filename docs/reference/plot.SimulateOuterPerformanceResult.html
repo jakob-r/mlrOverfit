@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulates the outer test error — simulateOuterTestError • mlrOverfit</title>
+<title>Plots the simulated results — plot.SimulateOuterPerformanceResult • mlrOverfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -72,27 +72,30 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulates the outer test error</h1>
+    <h1>Plots the simulated results</h1>
     </div>
 
     
-    <p>Based on the best observed point in the inner resampling the performance on the outer test set will be chosen.</p>
+    <p>Plots the result of <code><a href='simulateOuterPerformance.html'>simulateOuterPerformance</a></code></p>
     
 
-    <pre class="usage"><span class='fu'>simulateOuterTestError</span>(<span class='no'>outer.performance</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for SimulateOuterPerformanceResult</span>
+<span class='fu'>plot</span>(<span class='no'>outer.performance</span>,
+  <span class='kw'>resample.overfit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>outer.performance</th>
-      <td><p>[<code><a href='calcOuterPerformances.html'>OuterPerformanceResult</a></code>]</p></td>
+      <td><p>[<code><a href='simulateOuterPerformance.html'>SimulateOuterPerformanceResult</a></code>]</p></td>
+    </tr>
+    <tr>
+      <th>resample.overfit</th>
+      <td><p>[<code><a href='resampleOverfit.html'>ResampleOverfitResult</a></code>]
+If supplied boxplots for the untuned and the tuned performances will be shown.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>[<code>SimulateOuterTestErrorResult</code>]</p>
     
 
   </div>
@@ -100,16 +103,14 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Richter Jakob.</p>
+  <p>Developed by Jakob Richter.</p>
 </div>
 
 <div class="pkgdown">

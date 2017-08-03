@@ -5,11 +5,13 @@
 \alias{OuterPerformanceResult}
 \title{Calculates Outer Performances}
 \usage{
-calcOuterPerformances(tuning.resampled)
+calcOuterPerformances(tuning.resampled, ...)
 }
 \arguments{
 \item{tuning.resampled}{[\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
 Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.}
+
+\item{...}{Arguments passed to specific methods}
 
 \item{task}{[\code{\link[mlr]{Task}}]}
 

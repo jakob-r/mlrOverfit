@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hello, World! — hello • mlrOverfit</title>
+<title>Plots the simulated results — plot.OverfitAnalysisResult • mlrOverfit</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -72,32 +72,39 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Hello, World!</h1>
+    <h1>Plots the simulated results</h1>
     </div>
 
     
-    <p>Prints 'Hello, world!'.</p>
+    <p>Plots the result of <code><a href='simulateOuterPerformance.html'>simulateOuterPerformance</a></code></p>
     
 
-    <pre class="usage"><span class='fu'>hello</span>()</pre>
-        
+    <pre class="usage"><span class='co'># S3 method for OverfitAnalysisResult</span>
+<span class='fu'>plot</span>(<span class='no'>overfit.analysis</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>overfit.analysis</th>
+      <td><p>[<code><a href='generateOverfitAnalysis.html'>OverfitAnalysisResult</a></code>]</p></td>
+    </tr>
+    </table>
+    
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hello</span>()</div><div class='output co'>#&gt; <span class='error'>Error in hello(): could not find function "hello"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Richter Jakob.</p>
+  <p>Developed by Jakob Richter.</p>
 </div>
 
 <div class="pkgdown">

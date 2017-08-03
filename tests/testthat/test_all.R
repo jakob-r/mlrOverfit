@@ -28,7 +28,7 @@ test_that("basic workflow works", {
   expect_set_equal(unique(outer.errors$data$dob), 1:5)
   expect_set_equal(unique(outer.errors$data$iter), 1:3)
 
-  outer.errors = simulateOuterTestError(outer.errors)
+  outer.errors = simulateOuterPerformance(outer.errors)
   expect_numeric(outer.errors$data[[outer.errors$sim.y.outer.name]], any.missing = FALSE)
 
   plot(outer.errors, ro)

@@ -1,11 +1,11 @@
 #' @title Plots the simulated results
-#' @description Plots the result of \code{\link{simulateOuterTestError}}
+#' @description Plots the result of \code{\link{simulateOuterPerformance}}
 #'
-#' @param outer.performance [\code{\link{SimulateOuterTestErrorResult}}]
+#' @param outer.performance [\code{\link{SimulateOuterPerformanceResult}}]
 #' @param resample.overfit [\code{\link{ResampleOverfitResult}}]
 #'  If supplied boxplots for the untuned and the tuned performances will be shown.
 #' @export
-plot.SimulateOuterTestErrorResult = function(outer.performance, resample.overfit = NULL) {
+plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overfit = NULL) {
   measure.vars = unlist(outer.performance[c("y.inner.name", "y.outer.name", "cum.y.inner.name", "cum.y.outer.name", "sim.y.outer.name")])
   sumary.vars = unlist(outer.performance[c("cum.y.inner.name", "cum.y.outer.name", "sim.y.outer.name")])
 
@@ -40,4 +40,13 @@ plot.SimulateOuterTestErrorResult = function(outer.performance, resample.overfit
   g = g + scale_color_discrete(name = "Performance")
   g = g + ylab(outer.performance$measures[[1]]$name) + xlab("Date of Birth")
   g + facet_grid(iter~.)
+}
+
+#' @title Plots the simulated results
+#' @description Plots the result of \code{\link{simulateOuterPerformance}}
+#'
+#' @param overfit.analysis [\code{\link{OverfitAnalysisResult}}]
+#' @export
+plot.OverfitAnalysisResult = function(overfit.analysis) {
+  plot(overfit.analysis$simulated.outer.performance, overfit.analysis$resample.overfit)
 }

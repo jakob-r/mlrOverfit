@@ -2,10 +2,10 @@
 #' @description Based on the best observed point in the inner resampling the performance on the outer test set will be chosen.
 #'
 #' @param outer.performance [\code{\link{OuterPerformanceResult}}]
-#' @return [\code{SimulateOuterTestErrorResult}]
-#' @aliases SimulateOuterTestErrorResult
+#' @return [\code{SimulateOuterPerformanceResult}]
+#' @aliases SimulateOuterPerformanceResult
 #' @export
-simulateOuterTestError = function(outer.performance) {
+simulateOuterPerformance = function(outer.performance) {
   data = outer.performance$data
   y.inner.name = outer.performance$y.inner.name
   y.outer.name = outer.performance$y.outer.name
@@ -28,5 +28,5 @@ simulateOuterTestError = function(outer.performance) {
   outer.performance$data = data
   outer.performance = insert(outer.performance, list(cum.y.inner.name = cum.y.inner.name, cum.y.outer.name = cum.y.outer.name, sim.y.outer.name = sim.y.outer.name))
 
-  addClasses(outer.performance, "SimulateOuterTestErrorResult")
+  addClasses(outer.performance, "SimulateOuterPerformanceResult")
 }
