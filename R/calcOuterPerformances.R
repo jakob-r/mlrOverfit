@@ -78,7 +78,7 @@ calcOuterPerformance.ResampleResult = function(tuning.resampled, out.res.i, task
   } else {
     y.change = seq_row(par.settings)
   }
-  par.settings = par.settings[y.change, ]
+  par.settings = par.settings[y.change, , drop = FALSE]
 
   par.settings = dfRowsToList(df = par.settings, par.set = par.set)
   par.settings = lapply(par.settings, function(x) trafoValue(par.set, x))
