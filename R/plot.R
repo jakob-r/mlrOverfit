@@ -42,7 +42,7 @@ plot.SimulateOuterPerformanceResult = function(outer.performance, resample.overf
     g = g + geom_boxplot(data = data.boxplots, mapping = aes_string(x = "dob", y = "value"), alpha = 0.5, width = 1)
   }
   g = g + scale_color_discrete(name = "Performance")
-  g = g + ylab(outer.performance$measures[[1]]$name) + xlab("Date of Birth")
+  g = g + ylab(outer.performance$measures[[1]]$name) + xlab("Parameter Setting")
   g
 }
 
