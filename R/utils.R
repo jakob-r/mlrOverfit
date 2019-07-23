@@ -40,7 +40,7 @@ simulate.outer.test = function(inner.perf, outer.perf, minimize = TRUE) {
   if (minimize) {
     cumfun = cummin.na
   } else {
-    cumfun = cummax.na()
+    cumfun = cummax.na
   }
   sel.index = sapply(cumfun(inner.perf), function(x) which.first(x == inner.perf))
   outer.perf[sel.index]
