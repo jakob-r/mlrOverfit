@@ -4,10 +4,17 @@
 \alias{as.data.frame.OuterPerformanceResult}
 \title{Convert OuterPerformanceResult to data.frame}
 \usage{
-\method{as.data.frame}{OuterPerformanceResult}(obj, ...)
+\method{as.data.frame}{OuterPerformanceResult}(x, row.names, optional, ...)
 }
 \arguments{
-\item{obj}{[\code{\link{OuterPerformanceResult}}]}
+\item{x}{[\code{\link{OuterPerformanceResult}}]}
+
+\item{row.names}{[character]\cr
+Row names for result.
+Default is none.}
+
+\item{optional}{(any)\cr
+Currently ignored.}
 
 \item{...}{[\code{...}]
 Arguments passed do \code{\link{as.data.frame}}}

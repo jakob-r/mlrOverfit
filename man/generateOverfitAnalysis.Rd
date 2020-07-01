@@ -5,9 +5,16 @@
 \alias{OverfitAnalysisResult}
 \title{Generates Data for Overfitting Analysis}
 \usage{
-generateOverfitAnalysis(task, learner, tune.control = NULL, par.set,
-  learner.tuned = NULL, only.on.improvement = FALSE,
-  outer.resampling = cv10, ...)
+generateOverfitAnalysis(
+  task,
+  learner,
+  tune.control = NULL,
+  par.set,
+  learner.tuned = NULL,
+  only.on.improvement = FALSE,
+  outer.resampling = cv10,
+  ...
+)
 }
 \arguments{
 \item{task}{[\code{\link[mlr]{Task}}]}

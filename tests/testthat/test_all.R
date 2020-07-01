@@ -1,5 +1,7 @@
 context("Workflow")
 
+library("mlr")
+
 test_that("basic workflow works", {
   task = iris.task
   learner = makeLearner("classif.ksvm")
@@ -16,7 +18,7 @@ test_that("basic workflow works", {
   for (par.set in par.sets) {
     tune.control = makeTuneControlRandom(maxit = 5)
     learner.tuned = makeTuneWrapper(learner = learner, resampling = hout, par.set = par.set, control = tune.control)
-    ro = resampleOverfit(learner = learner.tuned, task = task, resampling = cv3)
+    ro = resampleOverfit(learner.tuned = learner.tuned, task = task, resampling = cv3)
 
     expect_class(ro, "ResampleOverfitResult")
     expect_list(ro[c("tuning.resampled", "untuned.resampled")], types = "ResampleResult")

@@ -15,7 +15,7 @@ simulateOuterPerformance = function(outer.performance) {
 
   minimize = outer.performance$measures[[1]]$minimize
 
-  cum.data = data[, c(list(dob = get("dob")), parallelMap(cum.over.dob, x = as.list(.SD), more.args = list(dob = get("dob"), minimize = minimize))), by = .(iter), .SDcols=c(y.inner.name, y.outer.name)]
+  cum.data = data[, c(list(dob = get("dob")), parallelMap(cum.over.dob, x = as.list(.SD), more.args = list(dob = get("dob"), minimize = minimize))), by = c("iter"), .SDcols=c(y.inner.name, y.outer.name)]
 
   colnames(cum.data)[-(1:2)] = c(cum.y.inner.name, cum.y.outer.name)
 

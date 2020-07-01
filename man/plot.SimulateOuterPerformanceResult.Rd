@@ -4,14 +4,15 @@
 \alias{plot.SimulateOuterPerformanceResult}
 \title{Plots the simulated results}
 \usage{
-\method{plot}{SimulateOuterPerformanceResult}(outer.performance,
-  resample.overfit = NULL)
+\method{plot}{SimulateOuterPerformanceResult}(x, resample.overfit = NULL, ...)
 }
 \arguments{
-\item{outer.performance}{[\code{\link{SimulateOuterPerformanceResult}}]}
+\item{x}{[\code{\link{SimulateOuterPerformanceResult}}]}
 
 \item{resample.overfit}{[\code{\link{ResampleOverfitResult}}]
 If supplied boxplots for the untuned and the tuned performances will be shown.}
+
+\item{...}{Not used.}
 }
 \description{
 Plots the result of \code{\link{simulateOuterPerformance}}

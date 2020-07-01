@@ -28,7 +28,7 @@ generateOverfitAnalysis = function(task, learner, tune.control = NULL, par.set, 
     learner.tuned = makeTuneWrapper(learner = learner, resampling = cv10, par.set = par.set, control = tune.control)
   }
 
-  ro = resampleOverfit(learner = learner.tuned, task = task, resampling = outer.resampling, ...)
+  ro = resampleOverfit(learner.tuned = learner.tuned, task = task, resampling = outer.resampling, ...)
 
   outer.performance = calcOuterPerformances(ro, only.on.improvement = only.on.improvement)
   outer.performance = simulateOuterPerformance(outer.performance)

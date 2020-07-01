@@ -2,11 +2,8 @@
 #' @description Calculates the performance on the outer test set for a nested resampling with a tune wrapper
 #' @param tuning.resampled [\code{\link[mlr]{ResampleResult}} | \code{\link{ResampleOverfitResult}}]
 #'   Make sure to run \code{resample(..., extract = getTuneResult, keep.pred = TRUE)}.
-#' @param task [\code{\link[mlr]{Task}}]
-#' @param measures [\code{\link[mlr]{Measure}}]
 #' @param ...
 #'   Arguments passed to specific methods
-#' @template param_only_on_improvement
 #' @return [\code{OuterPerformanceResult}]
 #' @aliases OuterPerformanceResult
 #' @export
@@ -15,12 +12,15 @@ calcOuterPerformances = function(tuning.resampled, ...) {
 }
 
 #' @export
-calcOuterPerformances.ResampleOverfitResult = function(tuning.resampled, only.on.improvement = FALSE) {
+calcOuterPerformances.ResampleOverfitResult = function(tuning.resampled, only.on.improvement = FALSE, ...) {
   calcOuterPerformances(tuning.resampled$tuning.resampled, tuning.resampled$task, tuning.resampled$measures, only.on.improvement = only.on.improvement)
 }
 
+#' @param task [\code{\link[mlr]{Task}}]
+#' @param measures [\code{\link[mlr]{Measure}}]
+#' @template param_only_on_improvement
 #' @export
-calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures, only.on.improvement = FALSE) {
+calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures, only.on.improvement = FALSE, ...) {
   assertList(tuning.resampled$extract, "TuneResult")
   assertClass(task, "Task")
   measures = BBmisc::ensureVector(measures, cl = "Measure")
@@ -37,6 +37,8 @@ calcOuterPerformances.ResampleResult = function(tuning.resampled, task, measures
 #' @description Calculates the performance on the outer test set for a specific nested resampling iteration with a tune wrapper
 #' @inheritParams calcOuterPerformances
 #' @param out.res.i [\code{integer(1)}]
+#' @param ...
+#'   Arguments passed to specific methods
 #' @return \code{data.table}
 #' @export
 calcOuterPerformance = function(tuning.resampled, out.res.i, ...) {
@@ -44,12 +46,14 @@ calcOuterPerformance = function(tuning.resampled, out.res.i, ...) {
 }
 
 #' @export
-calcOuterPerformance.ResampleOverfitResult = function(tuning.resampled, out.res.i, only.on.improvement = FALSE) {
+calcOuterPerformance.ResampleOverfitResult = function(tuning.resampled, out.res.i, only.on.improvement = FALSE, ...) {
   calcOuterPerformance(tuning.resampled$tuning.resampled, out.res.i = out.res.i, tuning.resampled$task, tuning.resampled$measures, only.on.improvement = only.on.improvement)
 }
 
+#' @param task [\code{\link[mlr]{Task}}]
+#' @param measures [\code{\link[mlr]{Measure}}]
 #' @export
-calcOuterPerformance.ResampleResult = function(tuning.resampled, out.res.i, task, measures, only.on.improvement = FALSE) {
+calcOuterPerformance.ResampleResult = function(tuning.resampled, out.res.i, only.on.improvement = FALSE, task, measures, ...) {
   assertList(tuning.resampled$extract, "TuneResult")
   assertIntegerish(out.res.i, lower = 1, upper = length(tuning.resampled$extract))
   assertClass(task, "Task")

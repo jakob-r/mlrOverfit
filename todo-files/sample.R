@@ -14,7 +14,7 @@ measures = mlr::getDefaultMeasure(task)
 par.set = getDefaultParConfig(learner)$par.set
 #par.set = evaluateParamExpressions(par.set, dict = mlrHyperopt::getTaskDictionary(task))
 learner.tuned = makeTuneWrapper(learner = learner, resampling = hout, measures = measures, par.set = par.set, control = tune.control)
-ro = resampleOverfit(learner = learner.tuned, task = task, resampling = cv10, measures = measures)
+ro = resampleOverfit(learner.tuned = learner.tuned, task = task, resampling = cv10, measures = measures)
 
 outer.errors = calcOuterPerformances(ro, only.on.improvement = TRUE)
 

@@ -64,7 +64,7 @@ par.set = makeParamSet(
 )
 tune.control = makeTuneControlRandom(maxit = 20)
 learner.tuned = makeTuneWrapper(learner = learner, resampling = hout, par.set = par.set, control = tune.control)
-ro = resampleOverfit(learner = learner.tuned, task = task, resampling = cv5)
+ro = resampleOverfit(learner.tuned = learner.tuned, task = task, resampling = cv5)
 
 outer.errors = calcOuterPerformances(ro)
 outer.errors = simulateOuterPerformance(outer.errors)

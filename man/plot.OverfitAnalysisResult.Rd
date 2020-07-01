@@ -4,10 +4,12 @@
 \alias{plot.OverfitAnalysisResult}
 \title{Plots the simulated results}
 \usage{
-\method{plot}{OverfitAnalysisResult}(overfit.analysis)
+\method{plot}{OverfitAnalysisResult}(x, ...)
 }
 \arguments{
-\item{overfit.analysis}{[\code{\link{OverfitAnalysisResult}}]}
+\item{x}{[\code{\link{OverfitAnalysisResult}}]}
+
+\item{...}{Not used.}
 }
 \description{
 Plots the result of \code{\link{simulateOuterPerformance}}
